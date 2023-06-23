@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ToysShop.DataAccess.Data;
 using ToysShop.Models;
+using ToysShop.Models.ViewModels;
 
 namespace ToysShop.Areas.Admin.Controllers;
 [Area("Admin")]
@@ -20,21 +21,24 @@ public class ToyController : Controller
 
     public IActionResult Create()
     {
-        IEnumerable<SelectListItem> CategoryList = _context.Categories
+        ToyVM toyVM = new()
+        {
+            CategoryList = _context.Categories
             .Select(u => new SelectListItem
             {
-                Text= u.Name,
-                Value=u.Id.ToString(),
-            });
-        ViewBag.CategoryList = CategoryList;
-        return View();
+                Text = u.Name,
+                Value = u.Id.ToString(),
+            }),
+            Toy = new Toy()
+        };
+        return View(toyVM);
     }
     [HttpPost]
-    public IActionResult Create(Toy toy)
+    public IActionResult Create(ToyVM obj)
     {
         if (ModelState.IsValid)
         {
-            _context.Toys.Add(toy);
+            _context.Toys.Add(obj.Toy);
             _context.SaveChanges();
             TempData["Success"] = "Toy created successfully";
             return RedirectToAction("Index");

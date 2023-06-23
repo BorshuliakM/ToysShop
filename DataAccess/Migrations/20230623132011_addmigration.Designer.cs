@@ -11,8 +11,8 @@ using ToysShop.DataAccess.Data;
 namespace ToysShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230623113047_addImageToToy")]
-    partial class addImageToToy
+    [Migration("20230623132011_addmigration")]
+    partial class addmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
