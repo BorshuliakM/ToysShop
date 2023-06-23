@@ -7,6 +7,7 @@ namespace ToysShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //private readonly <HomeController> _;
 
         public HomeController(ILogger<HomeController> logger)
         {
