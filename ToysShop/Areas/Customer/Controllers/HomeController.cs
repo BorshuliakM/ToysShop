@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using ToysShop.Models;
 
-namespace ToysShop.Controllers;
-
+namespace ToysShop.Areas.Customer.Controllers;
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

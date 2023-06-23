@@ -11,6 +11,7 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Toy> Toys { get; set; }
 
     //protected override void OnModelCreating(ModelBuilder modelBuilder)
     //{

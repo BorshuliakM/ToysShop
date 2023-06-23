@@ -1,0 +1,62 @@
+﻿@model Toy
+
+<form method="post">
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Toy</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div class="mb-3 row p-1">
+            <label asp-for="Name" class="p-0"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Description" class="p-0"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Producer" class="p-0"></label>
+            <input asp-for="Producer" class="form-control" />
+            <span asp-validation-for="Producer" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Price" class="p-0"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Price10" class="p-0"></label>
+            <input asp-for="Price10" class="form-control" />
+            <span asp-validation-for="Price10" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
+                <option disabled selected>--Select Category--</option>
+            </select>
+
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Toy" asp-action="Index" class="btn btn-secondary form-control" >
+                    Back To List
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

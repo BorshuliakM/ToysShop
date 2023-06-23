@@ -2,8 +2,8 @@
 using ToysShop.DataAccess.Data;
 using ToysShop.Models;
 
-namespace ToysShop.Controllers;
-
+namespace ToysShop.Areas.Admin.Controllers;
+[Area("Admin")]
 public class CategoryController : Controller
 {
     private readonly ApplicationDbContext _context;
