@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToysShop.DataAccess", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToysShop.Models", "Models\ToysShop.Models.csproj", "{C06B3649-96A9-49F3-A035-C02C9B6E1C1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToysShop.Utility", "Utility\ToysShop.Utility.csproj", "{52C25D34-CD62-43E5-8096-6B8F2F90A9C3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{C06B3649-96A9-49F3-A035-C02C9B6E1C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C06B3649-96A9-49F3-A035-C02C9B6E1C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C06B3649-96A9-49F3-A035-C02C9B6E1C1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52C25D34-CD62-43E5-8096-6B8F2F90A9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52C25D34-CD62-43E5-8096-6B8F2F90A9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52C25D34-CD62-43E5-8096-6B8F2F90A9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52C25D34-CD62-43E5-8096-6B8F2F90A9C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
