@@ -1,10 +1,10 @@
 ﻿@model ToyVM
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Create Toy</h2>
+            <h2 class="text-primary">@(Model.Toy.Id!=0?"Update":"Create")Toy</h2>
             <hr />
         </div>
         <div asp-validation-summary="ModelOnly"></div>
@@ -38,12 +38,22 @@
             <select asp-for="Toy.CategoryId" asp-items="@Model.CategoryList" class="form-select">
                 <option disabled selected>--Select Category--</option>
             </select>
-
             <span asp-validation-for="Toy.CategoryId" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Toy.ImageUrl" class="p-0"></label>
+            <input type="file" name="file" class="form-control"/>
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary form-control">Create</button>
+                @if(Model.Toy.Id!=0)
+                {
+                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                }
             </div>
             <div class="col-6">
                 <a asp-controller="Toy" asp-action="Index" class="btn btn-secondary form-control" >

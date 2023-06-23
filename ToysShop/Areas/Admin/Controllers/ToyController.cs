@@ -9,9 +9,11 @@ namespace ToysShop.Areas.Admin.Controllers;
 public class ToyController : Controller
 {
     private readonly ApplicationDbContext _context;
-    public ToyController(ApplicationDbContext context)
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    public ToyController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
     {
         _context = context;
+        _webHostEnvironment = webHostEnvironment;
     }
     public IActionResult Index()
     {
@@ -19,7 +21,7 @@ public class ToyController : Controller
         return View(ToysList);
     }
 
-    public IActionResult Create()
+    public IActionResult UpSert(int? id)
     {
         ToyVM toyVM = new()
         {
@@ -31,47 +33,51 @@ public class ToyController : Controller
             }),
             Toy = new Toy()
         };
-        return View(toyVM);
+        if (id == null || id == 0)
+        {
+            return View(toyVM);
+        }
+        else
+        {
+            toyVM.Toy = _context.Toys.Find(id);
+            return View(toyVM);
+        }
+
     }
     [HttpPost]
-    public IActionResult Create(ToyVM obj)
+    public IActionResult UpSert(ToyVM toyVM, IFormFile? file)
     {
         if (ModelState.IsValid)
         {
-            _context.Toys.Add(obj.Toy);
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (file != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                string toyPath = Path.Combine(wwwRootPath, @"img\toy");
+                using (var fileStream = new FileStream(Path.Combine(toyPath, fileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                toyVM.Toy.ImageUrl = @"\img\toy\" + fileName;
+            }
+
+            _context.Toys.Add(toyVM.Toy);
             _context.SaveChanges();
             TempData["Success"] = "Toy created successfully";
             return RedirectToAction("Index");
         }
-        return View();
-    }
+        else
+        {
 
-    [HttpGet]
-    public IActionResult Edit(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-        Toy? toyFromDb = _context.Toys.Find(id);
-        if (toyFromDb == null)
-        {
-            return NotFound();
-        }
-        return View(toyFromDb);
-    }
+            toyVM.CategoryList = _context.Categories
+            .Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString(),
+            });
+            return View(toyVM);
 
-    [HttpPost]
-    public IActionResult Edit(Toy toy)
-    {
-        if (ModelState.IsValid)
-        {
-            _context.Toys.Update(toy);
-            _context.SaveChanges();
-            TempData["Success"] = "Toy updated successfully";
-            return RedirectToAction("Index");
         }
-        return View();
     }
 
     [HttpGet]

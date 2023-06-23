@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using ToysShop.DataAccess.Data;
 using ToysShop.Models;
 
 namespace ToysShop.Areas.Customer.Controllers;
@@ -7,16 +8,18 @@ namespace ToysShop.Areas.Customer.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    //private readonly <HomeController> _;
+    private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
+        _context = context;
         _logger = logger;
     }
 
     public IActionResult Index()
     {
-        return View();
+        IEnumerable<Toy> toyList = _context.Toys.ToList();
+        return View(toyList);
     }
 
     public IActionResult Privacy()
