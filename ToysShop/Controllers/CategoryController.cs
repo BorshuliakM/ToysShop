@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ToysShop.Data;
+using ToysShop.DataAccess.Data;
 using ToysShop.Models;
 
 namespace ToysShop.Controllers;

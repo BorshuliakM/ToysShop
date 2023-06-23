@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ToysShop.Data;
+using ToysShop.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

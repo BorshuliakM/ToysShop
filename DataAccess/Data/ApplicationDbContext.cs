@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ToysShop.Models;
 
-namespace ToysShop.Data;
+namespace ToysShop.DataAccess.Data;
 
 public class ApplicationDbContext : DbContext
 {
